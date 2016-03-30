@@ -1,135 +1,271 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Countdown Timer</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="shortcut icon" href="images/titleimage.png">
+<meta charset="utf-8">
+<title id="topic">Timer</title>
+
 <style>
-body {
-	background-color: black;
+html{
+  width:100%;
+  height:100%;
+  background-color:black;
 }
-.container{
-	position:relative;
-	margin-top: 100px;
-	margin-left: 133px;
+button{
+  height:100px;
+  width:150px;
+  font-size:60px;
+  text-align:center;
+  background-color:transparent;
+  border: 5px solid;
+  border-radius: 50px;
 }
-	
-.whirl,
-.whirl::before,
-.whirl::after {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	border: 4px solid rgb(204,204,204);
-	border-left-color: rgb(0,0,0);
-	border-radius: 3996px;
-		-o-border-radius: 3996px;
-		-ms-border-radius: 3996px;
-		-webkit-border-radius: 3996px;
-		-moz-border-radius: 3996px;
+body{
+  background-color:#87B4EA;
 }
-.whirl {
-	margin: -100px 0 0 -100px;
-	height: 200px;
-	width: 200px;
-	animation: cssload-rotate 1900ms linear infinite;
-		-o-animation: cssload-rotate 1900ms linear infinite;
-		-ms-animation: cssload-rotate 1900ms linear infinite;
-		-webkit-animation: cssload-rotate 1900ms linear infinite;
-		-moz-animation: cssload-rotate 1900ms linear infinite;
+.timer-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #87B4EA;
+  color: #FF3300;
 }
-.whirl::before {
-	content: "";
-	margin: -92px 0 0 -92px;
-	height: 176px;
-	width: 176px;
-	animation: cssload-rotate 1900ms linear infinite;
-		-o-animation: cssload-rotate 1900ms linear infinite;
-		-ms-animation: cssload-rotate 1900ms linear infinite;
-		-webkit-animation: cssload-rotate 1900ms linear infinite;
-		-moz-animation: cssload-rotate 1900ms linear infinite;
+.timer-wrapper > ul {
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
 }
-.whirl::after {
-	content: "";
-	margin: -116px 0 0 -116px;
-	height: 224px;
-	width: 224px;
-	animation: cssload-rotate 3800ms linear infinite;
-		-o-animation: cssload-rotate 3800ms linear infinite;
-		-ms-animation: cssload-rotate 3800ms linear infinite;
-		-webkit-animation: cssload-rotate 3800ms linear infinite;
-		-moz-animation: cssload-rotate 3800ms linear infinite;
+.timer-wrapper > ul > li {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  background: #001450;
+  border: 10px solid rgba(23, 246, 251, 1.0);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-radius: 500px;
+  transition: all 0.5s ease;
 }
-@keyframes cssload-rotate {
-	100% {
-		transform: rotate(360deg);
-	}
+.timer-wrapper > ul > li:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  width: 200px;
+  height: 100px;
+  margin-left: -110px;
+  margin-top: -110px;
+  padding: 70px 0px 30px;
+  background-color: rgba(8, 8, 8, 1.0);
+  border: 10px solid rgba(8, 8, 8, 1.0);
+  border-radius: 200px;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 30px rgba(23, 246, 251, 0.5);
+  animation: pulseShadow 5s infinite linear;
 }
-@-o-keyframes cssload-rotate {
-	100% {
-		-o-transform: rotate(360deg);
-	}
+.timer-wrapper > ul > li:last-child::after {
+  content: '';
+  border: 3px dotted rgba(22, 42, 43, 1.0);
+  border-radius: 200px;
+  width: 200px;
+  height: 200px;
+  display: block;
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  background-color: #001450;
+  box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 1.0);
 }
-@-ms-keyframes cssload-rotate {
-	100% {
-		-ms-transform: rotate(360deg);
-	}
+.timer-wrapper > ul > li:nth-child(4) {
+  margin-left: -170px;
+  margin-top: -170px;
+  z-index: 1;
+  width: 330px;
+  height: 330px;
+  border-width: 5px;
+  border-style: solid;
+  box-shadow: inset 0px 0px 25px rgba(23, 246, 251, 1.0);
+  animation: spinBG3 8s infinite linear;
 }
-@-webkit-keyframes cssload-rotate {
-	100% {
-		-webkit-transform: rotate(360deg);
-	}
+.timer-wrapper > ul > li:nth-child(3) {
+  margin-left: -150px;
+  margin-top: -150px;
+  z-index: 1;
+  width: 296px;
+  height: 296px;
+  border-width: 2px;
+  box-shadow: inset 0px 0px 25px rgba(23, 246, 251, .25);
+  animation: spinBG 12s infinite linear;
 }
-@-moz-keyframes cssload-rotate {
-	100% {
-		-moz-transform: rotate(360deg);
-	}
+.timer-wrapper > ul > li:nth-child(2) {
+  margin-left: -137px;
+  margin-top: -137px;
+  z-index: 1;
+  width: 270px;
+  height: 270px;
+  border-width: 2px;
+  border-style: dotted;
+  box-shadow: 0px 0px 20px rgba(23, 246, 251, .5);
+  animation: spinBG2 12s infinite linear;
+}
+.timer-wrapper > ul > li:first-child {
+  margin-left: -130px;
+  margin-top: -130px;
+  z-index: 2;
+  width: 240px;
+  height: 240px;
+  border-width: 10px;
+  animation: spinBG 0.6s infinite linear;
+}
+#num {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 200;
+  margin-left: -4%;
+  margin-top: -4%;
+  font-size: 120px;
+}
+#top{
+  position: absolute;
+  left: 45%;
+  font-size: 65px;
+  font-family:fantasy;
+  color:white;
+  z-index:200;
+}
+#butt{
+  position: absolute;
+  left: 50%;
+  top:15%;
+  z-index: 200;
+  font-size: 35px;
+  marginal-left:-5%
+  
+}
+#butt1{
+  position: absolute;
+  left:40%;
+  top:15%;
+  z-index: 200;
+  font-size: 35px;
+  marginal-left:-7%;
+}
+/*-------------------------------------------
+		 Animations
+		-------------------------------------------*/
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0px 0px 20px rgba(23, 246, 251, 0.75);
+  }
+  50% {
+    text-shadow: 0px 0px 40px rgba(23, 246, 251, 0.5);
+  }
+  100% {
+    text-shadow: 0px 0px 20px rgba(23, 246, 251, 0.75);
+  }
+}
+@keyframes pulseShadow {
+  0% {
+    box-shadow: 0px 0px 30px rgba(23, 246, 251, 0.25);
+  }
+  50% {
+    box-shadow: 0px 0px 30px rgba(23, 246, 251, 0.75);
+  }
+  100% {
+    box-shadow: 0px 0px 30px rgba(23, 246, 251, 0.25);
+  }
+}
+@keyframes spinBG {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinBG2 {
+  0% {
+    transform: rotate(360deg);
+    box-shadow: 0px 0px 1px rgba(23, 246, 251, 0.5);
+  }
+  50% {
+    transform: rotate(180deg);
+    box-shadow: 0px 0px 20px rgba(23, 246, 251, 0.5);
+  }
+  100% {
+    transform: rotate(0deg);
+    box-shadow: 0px 0px 1px rgba(23, 246, 251, 0.5);
+  }
+}
+@keyframes spinBG3 {
+  0% {
+    transform: rotate(180deg);
+    box-shadow: 0px 0px 1px rgba(23, 246, 251, 0.1);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-180deg);
+  }
 }
 </style>
-<script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="timer-wrapper">
+  <span id="num">60</span>
+  <span id="top">Timer</span>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  
+  <button type="button" id="butt" onclick="start()">
+  start
+  </button>
+  
+  <button type="button" id="butt1" onclick="reset()">
+  reset
+  </button>
+  
+</div>
+
 <script>
-var ST;
-function start() {
-	var x = document.getElementById("num").value;
-	if (x == "") {
-		x = 60;
-	}
-	document.getElementById("shownum").innerHTML = x + 1;
-	clearTimeout(ST);
-	minus();
-}
+var goStart = false;
 function minus() {
-  if (document.getElementById("num").value == "") {
-  	var inputnum = 60;
-  } else {
-  	inputnum = document.getElementById("num").value;
+  if (document.getElementById("num")) {
+    var curr = parseInt(document.getElementById("num").innerHTML);
   }
-  if (document.getElementById("shownum")) {
-    var curr = parseInt(document.getElementById("shownum").innerHTML);
-  }
-  if (curr && curr <= inputnum) {
+  if (curr && curr <= 60 && goStart==true) {
     if (curr <= 10) {
-      document.getElementById("shownum").innerHTML = "0" + (curr - 1);
+      document.getElementById("num").innerHTML = "0" + (curr - 1);
     } else {
-      document.getElementById("shownum").innerHTML = curr - 1;
+      document.getElementById("num").innerHTML = curr - 1;
     }
   } else {
-    document.getElementById("shownum").innerHTML = inputnum;
+    document.getElementById("num").innerHTML = 60;
   }
-  ST = setTimeout(function() {
+  setTimeout(function() {
     minus();
   }, 1000);
+};
+minus();
+function start(){
+  goStart = true;
+  
+}
+function reset(){
+  goStart = false;
+  
 }
 </script>
-</head>
-<body>
-	<div class="container">
-		<h1 id="shownum" style="color:white; margin-left:535px; margin-top:10px; font-size:70px;">60</h1>
-		<div class="whirl"></div>
-	</div>
-	<h1 style="margin-left:575px; margin-top:70px">Countdown Timer</h1>
-     <input id="num" type="text" class="form-control" placeholder="Please input a number">
-     <button class="btn btn-default" type="button" style="margin-left:695px; margin-top:10px;" onclick="start()">Start</button>
 </body>
 </html>
