@@ -1,35 +1,19 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta charset="utf-8">
-<title id="topic">Timer</title>
-
-<style>
-html{
-  width:100%;
-  height:100%;
-  background-color:black;
-}
-button{
-  height:100px;
-  width:150px;
-  font-size:60px;
-  text-align:center;
-  background-color:transparent;
-  border: 5px solid;
-  border-radius: 50px;
-}
-body{
-  background-color:#87B4EA;
-}
+<!--
+Created using JS Bin
+http://jsbin.com
+Copyright (c) 2016 by anonymous (http://jsbin.com/tufiqipoto/1/edit)
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<style id="jsbin-css">
 .timer-wrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #87B4EA;
-  color: #FF3300;
+  background-color:#00FF00;
+  color: 	#FF0000;
 }
 .timer-wrapper > ul {
   height: 100%;
@@ -42,7 +26,7 @@ body{
   top: 50%;
   left: 50%;
   display: block;
-  background: #001450;
+  background: transparent;
   border: 10px solid rgba(23, 246, 251, 1.0);
   border-left-color: transparent;
   border-right-color: transparent;
@@ -76,7 +60,7 @@ body{
   position: absolute;
   top: -3px;
   left: -3px;
-  background-color: #001450;
+  background-color: transparent;
   box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 1.0);
 }
 .timer-wrapper > ul > li:nth-child(4) {
@@ -106,10 +90,10 @@ body{
   z-index: 1;
   width: 270px;
   height: 270px;
-  border-width: 2px;
+  border-width: 3px;
   border-style: dotted;
   box-shadow: 0px 0px 20px rgba(23, 246, 251, .5);
-  animation: spinBG2 12s infinite linear;
+  animation: spinBG2 2s infinite linear;
 }
 .timer-wrapper > ul > li:first-child {
   margin-left: -130px;
@@ -118,41 +102,16 @@ body{
   width: 240px;
   height: 240px;
   border-width: 10px;
-  animation: spinBG 0.6s infinite linear;
+  animation: spinBG 5s infinite linear;
 }
 #num {
   position: absolute;
   top: 50%;
   left: 50%;
   z-index: 200;
-  margin-left: -4%;
-  margin-top: -4%;
+  margin-left: -9%;
+  margin-top: -7%;
   font-size: 120px;
-}
-#top{
-  position: absolute;
-  left: 45%;
-  font-size: 65px;
-  font-family:fantasy;
-  color:white;
-  z-index:200;
-}
-#butt{
-  position: absolute;
-  left: 50%;
-  top:15%;
-  z-index: 200;
-  font-size: 35px;
-  marginal-left:-5%
-  
-}
-#butt1{
-  position: absolute;
-  left:40%;
-  top:15%;
-  z-index: 200;
-  font-size: 35px;
-  marginal-left:-7%;
 }
 /*-------------------------------------------
 		 Animations
@@ -214,12 +173,8 @@ body{
   }
 }
 </style>
-</head>
-
-<body>
 <div class="timer-wrapper">
   <span id="num">60</span>
-  <span id="top">Timer</span>
   <ul>
     <li></li>
     <li></li>
@@ -227,24 +182,13 @@ body{
     <li></li>
     <li></li>
   </ul>
-  
-  <button type="button" id="butt" onclick="start()">
-  start
-  </button>
-  
-  <button type="button" id="butt1" onclick="reset()">
-  reset
-  </button>
-  
 </div>
-
-<script>
-var goStart = false;
+<script id="jsbin-javascript">
 function minus() {
   if (document.getElementById("num")) {
     var curr = parseInt(document.getElementById("num").innerHTML);
   }
-  if (curr && curr <= 60 && goStart==true) {
+  if (curr && curr <= 60) {
     if (curr <= 10) {
       document.getElementById("num").innerHTML = "0" + (curr - 1);
     } else {
@@ -258,14 +202,4 @@ function minus() {
   }, 1000);
 };
 minus();
-function start(){
-  goStart = true;
-  
-}
-function reset(){
-  goStart = false;
-  
-}
 </script>
-</body>
-</html>
